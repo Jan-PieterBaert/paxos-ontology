@@ -1,0 +1,156 @@
+@prefix : <http://www.semanticweb.org/jan-pieter/ontologies/2023/2/paxos-ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix paxos: <http://www.semanticweb.org/jan-pieter/ontologies/2023/2/paxos-ontology#> .
+@base <http://www.semanticweb.org/jan-pieter/ontologies/2023/2/paxos-ontology#> .
+
+<http://www.semanticweb.org/jan-pieter/ontologies/2023/2/paxos-ontology#> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/jan-pieter/ontologies/2023/2/paxos-ontology#acceptedStatus
+paxos:acceptedStatus rdf:type owl:ObjectProperty ;
+                     rdfs:domain paxos:Accepted ;
+                     rdfs:range [ rdf:type owl:Restriction ;
+                                  owl:onProperty owl:topDataProperty ;
+                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                  owl:onDataRange xsd:boolean
+                                ] ;
+                     rdfs:comment "The boolean indicating whether the value is accepted by this Acceptor or not."@en .
+
+
+###  http://www.semanticweb.org/jan-pieter/ontologies/2023/2/paxos-ontology#acceptors
+paxos:acceptors rdf:type owl:ObjectProperty ;
+                rdfs:domain paxos:Accept ,
+                            paxos:Accepted ,
+                            paxos:Prepare ,
+                            paxos:Promise ;
+                rdfs:range [ rdf:type owl:Restriction ;
+                             owl:onProperty owl:topDataProperty ;
+                             owl:someValuesFrom xsd:anyURI
+                           ] ;
+                rdfs:comment "The URI of the inbox of the Acceptor, this URI will be used to send messages to the inbox of the Acceptor."@en .
+
+
+###  http://www.semanticweb.org/jan-pieter/ontologies/2023/2/paxos-ontology#from
+paxos:from rdf:type owl:ObjectProperty ;
+           rdfs:domain paxos:Accept ,
+                       paxos:Accepted ,
+                       paxos:Promise ;
+           rdfs:range [ rdf:type owl:Restriction ;
+                        owl:onProperty owl:topDataProperty ;
+                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                        owl:onDataRange xsd:anyURI
+                      ] ;
+           rdfs:comment ""@en .
+
+
+###  http://www.semanticweb.org/jan-pieter/ontologies/2023/2/paxos-ontology#instance
+paxos:instance rdf:type owl:ObjectProperty ;
+               rdfs:domain paxos:Accept ,
+                           paxos:Accepted ,
+                           paxos:Prepare ,
+                           paxos:Promise ;
+               rdfs:range [ rdf:type owl:Restriction ;
+                            owl:onProperty owl:topDataProperty ;
+                            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                            owl:onDataRange xsd:int
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty owl:topDataProperty ;
+                            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                            owl:onDataRange xsd:integer
+                          ] ;
+               rdfs:comment "Number indicating the instance of Paxos the current message pertains to"@en .
+
+
+###  http://www.semanticweb.org/jan-pieter/ontologies/2023/2/paxos-ontology#proposer
+paxos:proposer rdf:type owl:ObjectProperty ;
+               rdfs:domain paxos:Accept ,
+                           paxos:Accepted ,
+                           paxos:Prepare ,
+                           paxos:Promise ;
+               rdfs:range [ rdf:type owl:Restriction ;
+                            owl:onProperty owl:topDataProperty ;
+                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                            owl:onDataRange xsd:anyURI
+                          ] ;
+               rdfs:comment "The URI of the inbox of the Proposer, this URI will be used to send messages to the inbox of the Proposer."@en .
+
+
+###  http://www.semanticweb.org/jan-pieter/ontologies/2023/2/paxos-ontology#round
+paxos:round rdf:type owl:ObjectProperty ;
+            rdfs:domain paxos:Accept ,
+                        paxos:Accepted ,
+                        paxos:Prepare ,
+                        paxos:Promise ;
+            rdfs:range [ rdf:type owl:Restriction ;
+                         owl:onProperty owl:topDataProperty ;
+                         owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                         owl:onDataRange xsd:int
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty owl:topDataProperty ;
+                         owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                         owl:onDataRange xsd:integer
+                       ] ;
+            rdfs:comment "Number indicating the round of Paxos within the current instance the message pertains to"@en .
+
+
+###  http://www.semanticweb.org/jan-pieter/ontologies/2023/2/paxos-ontology#startTime
+paxos:startTime rdf:type owl:ObjectProperty ;
+                rdfs:domain paxos:Accept ,
+                            paxos:Accepted ,
+                            paxos:Prepare ,
+                            paxos:Promise ;
+                rdfs:range [ rdf:type owl:Restriction ;
+                             owl:onProperty owl:topDataProperty ;
+                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                             owl:onDataRange xsd:dateTimeStamp
+                           ] ;
+                rdfs:comment ""@en ,
+                             "The timestamp of the first message that was sent from the Proposer, can be used when an application want to assume a certain timeout means the Acceptors don't all agree and wants to move on to the next instance."@en .
+
+
+###  http://www.semanticweb.org/jan-pieter/ontologies/2023/2/paxos-ontology#value
+paxos:value rdf:type owl:ObjectProperty ;
+            rdfs:domain paxos:Accept ,
+                        paxos:Accepted ;
+            rdfs:range [ rdf:type owl:Restriction ;
+                         owl:onProperty owl:topDataProperty ;
+                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                         owl:onDataRange xsd:string
+                       ] ;
+            rdfs:comment "The string value about which a consensus is reached."@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/jan-pieter/ontologies/2023/2/paxos-ontology#Accept
+paxos:Accept rdf:type owl:Class ;
+             rdfs:comment "Class used to model the Paxos Accept step"@en .
+
+
+###  http://www.semanticweb.org/jan-pieter/ontologies/2023/2/paxos-ontology#Accepted
+paxos:Accepted rdf:type owl:Class ;
+               rdfs:comment "Class used to model the Paxos Accepted step"@en .
+
+
+###  http://www.semanticweb.org/jan-pieter/ontologies/2023/2/paxos-ontology#Prepare
+paxos:Prepare rdf:type owl:Class ;
+              rdfs:comment "Class used to model the Paxos Prepare step"@en .
+
+
+###  http://www.semanticweb.org/jan-pieter/ontologies/2023/2/paxos-ontology#Promise
+paxos:Promise rdf:type owl:Class ;
+              rdfs:comment "Class used to model the Paxos Promise step"@en .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
