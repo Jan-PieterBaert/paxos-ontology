@@ -1,19 +1,19 @@
-@prefix : <http://www.semanticweb.org/jan-pieter/ontologies/2023/2/paxos-ontology#> .
+@prefix : <https://purl.org/paxos#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix paxos: <http://www.semanticweb.org/jan-pieter/ontologies/2023/2/paxos-ontology#> .
-@base <http://www.semanticweb.org/jan-pieter/ontologies/2023/2/paxos-ontology#> .
+@prefix paxos: <https://purl.org/paxos#> .
+@base <https://purl.org/paxos#> .
 
-<http://www.semanticweb.org/jan-pieter/ontologies/2023/2/paxos-ontology#> rdf:type owl:Ontology .
+<https://purl.org/paxos#> rdf:type owl:Ontology .
 
 #################################################################
 #    Object Properties
 #################################################################
 
-###  http://www.semanticweb.org/jan-pieter/ontologies/2023/2/paxos-ontology#acceptedStatus
+###  https://purl.org/paxos#acceptedStatus
 paxos:acceptedStatus rdf:type owl:ObjectProperty ;
                      rdfs:domain paxos:Accepted ;
                      rdfs:range [ rdf:type owl:Restriction ;
@@ -24,7 +24,7 @@ paxos:acceptedStatus rdf:type owl:ObjectProperty ;
                      rdfs:comment "The boolean indicating whether the value is accepted by this Acceptor or not."@en .
 
 
-###  http://www.semanticweb.org/jan-pieter/ontologies/2023/2/paxos-ontology#acceptors
+###  https://purl.org/paxos#acceptors
 paxos:acceptors rdf:type owl:ObjectProperty ;
                 rdfs:domain paxos:Message ;
                 rdfs:range [ rdf:type owl:Restriction ;
@@ -34,7 +34,7 @@ paxos:acceptors rdf:type owl:ObjectProperty ;
                 rdfs:comment "The URI of the inbox of the Acceptor, this URI will be used to send messages to the inbox of the Acceptor."@en .
 
 
-###  http://www.semanticweb.org/jan-pieter/ontologies/2023/2/paxos-ontology#from
+###  https://purl.org/paxos#from
 paxos:from rdf:type owl:ObjectProperty ;
            rdfs:domain paxos:Accept ,
                        paxos:Accepted ,
@@ -47,7 +47,7 @@ paxos:from rdf:type owl:ObjectProperty ;
            rdfs:comment ""@en .
 
 
-###  http://www.semanticweb.org/jan-pieter/ontologies/2023/2/paxos-ontology#instance
+###  https://purl.org/paxos#instance
 paxos:instance rdf:type owl:ObjectProperty ;
                rdfs:domain paxos:Message ;
                rdfs:range [ rdf:type owl:Restriction ;
@@ -63,7 +63,7 @@ paxos:instance rdf:type owl:ObjectProperty ;
                rdfs:comment "Number indicating the instance of Paxos the current message pertains to"@en .
 
 
-###  http://www.semanticweb.org/jan-pieter/ontologies/2023/2/paxos-ontology#proposer
+###  https://purl.org/paxos#proposer
 paxos:proposer rdf:type owl:ObjectProperty ;
                rdfs:domain paxos:Message ;
                rdfs:range [ rdf:type owl:Restriction ;
@@ -74,7 +74,7 @@ paxos:proposer rdf:type owl:ObjectProperty ;
                rdfs:comment "The URI of the inbox of the Proposer, this URI will be used to send messages to the inbox of the Proposer."@en .
 
 
-###  http://www.semanticweb.org/jan-pieter/ontologies/2023/2/paxos-ontology#round
+###  https://purl.org/paxos#round
 paxos:round rdf:type owl:ObjectProperty ;
             rdfs:domain paxos:Message ;
             rdfs:range [ rdf:type owl:Restriction ;
@@ -90,7 +90,7 @@ paxos:round rdf:type owl:ObjectProperty ;
             rdfs:comment "Number indicating the round of Paxos within the current instance the message pertains to"@en .
 
 
-###  http://www.semanticweb.org/jan-pieter/ontologies/2023/2/paxos-ontology#startTime
+###  https://purl.org/paxos#startTime
 paxos:startTime rdf:type owl:ObjectProperty ;
                 rdfs:domain paxos:Message ;
                 rdfs:range [ rdf:type owl:Restriction ;
@@ -102,7 +102,7 @@ paxos:startTime rdf:type owl:ObjectProperty ;
                              "The timestamp of the first message that was sent from the Proposer, can be used when an application want to assume a certain timeout means the Acceptors don't all agree and wants to move on to the next instance."@en .
 
 
-###  http://www.semanticweb.org/jan-pieter/ontologies/2023/2/paxos-ontology#value
+###  https://purl.org/paxos#value
 paxos:value rdf:type owl:ObjectProperty ;
             rdfs:domain paxos:Accept ,
                         paxos:Accepted ;
@@ -118,32 +118,37 @@ paxos:value rdf:type owl:ObjectProperty ;
 #    Classes
 #################################################################
 
-###  http://www.semanticweb.org/jan-pieter/ontologies/2023/2/paxos-ontology#Accept
+###  https://purl.org/paxos#Accept
 paxos:Accept rdf:type owl:Class ;
              rdfs:subClassOf paxos:Message ;
              rdfs:comment "Class used to model the Paxos Accept step"@en .
 
 
-###  http://www.semanticweb.org/jan-pieter/ontologies/2023/2/paxos-ontology#Accepted
+###  https://purl.org/paxos#Accepted
 paxos:Accepted rdf:type owl:Class ;
                rdfs:subClassOf paxos:Message ;
                rdfs:comment "Class used to model the Paxos Accepted step"@en .
 
 
-###  http://www.semanticweb.org/jan-pieter/ontologies/2023/2/paxos-ontology#Message
+###  https://purl.org/paxos#Message
 paxos:Message rdf:type owl:Class .
 
 
-###  http://www.semanticweb.org/jan-pieter/ontologies/2023/2/paxos-ontology#Prepare
+###  https://purl.org/paxos#Prepare
 paxos:Prepare rdf:type owl:Class ;
               rdfs:subClassOf paxos:Message ;
               rdfs:comment "Class used to model the Paxos Prepare step"@en .
 
 
-###  http://www.semanticweb.org/jan-pieter/ontologies/2023/2/paxos-ontology#Promise
+###  https://purl.org/paxos#Promise
 paxos:Promise rdf:type owl:Class ;
               rdfs:subClassOf paxos:Message ;
               rdfs:comment "Class used to model the Paxos Promise step"@en .
+
+###  https://purl.org/paxos#Promise
+paxos:Ack     rdf:type owl:Class ;
+              rdfs:subClassOf paxos:Message ;
+              rdfs:comment "Class used to get delivery of the Paxos Messages"@en .
 
 
 ###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
