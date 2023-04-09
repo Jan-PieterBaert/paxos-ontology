@@ -26,10 +26,7 @@ paxos:acceptedStatus rdf:type owl:ObjectProperty ;
 
 ###  http://www.semanticweb.org/jan-pieter/ontologies/2023/2/paxos-ontology#acceptors
 paxos:acceptors rdf:type owl:ObjectProperty ;
-                rdfs:domain paxos:Accept ,
-                            paxos:Accepted ,
-                            paxos:Prepare ,
-                            paxos:Promise ;
+                rdfs:domain paxos:Message ;
                 rdfs:range [ rdf:type owl:Restriction ;
                              owl:onProperty owl:topDataProperty ;
                              owl:someValuesFrom xsd:anyURI
@@ -52,10 +49,7 @@ paxos:from rdf:type owl:ObjectProperty ;
 
 ###  http://www.semanticweb.org/jan-pieter/ontologies/2023/2/paxos-ontology#instance
 paxos:instance rdf:type owl:ObjectProperty ;
-               rdfs:domain paxos:Accept ,
-                           paxos:Accepted ,
-                           paxos:Prepare ,
-                           paxos:Promise ;
+               rdfs:domain paxos:Message ;
                rdfs:range [ rdf:type owl:Restriction ;
                             owl:onProperty owl:topDataProperty ;
                             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
@@ -71,10 +65,7 @@ paxos:instance rdf:type owl:ObjectProperty ;
 
 ###  http://www.semanticweb.org/jan-pieter/ontologies/2023/2/paxos-ontology#proposer
 paxos:proposer rdf:type owl:ObjectProperty ;
-               rdfs:domain paxos:Accept ,
-                           paxos:Accepted ,
-                           paxos:Prepare ,
-                           paxos:Promise ;
+               rdfs:domain paxos:Message ;
                rdfs:range [ rdf:type owl:Restriction ;
                             owl:onProperty owl:topDataProperty ;
                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
@@ -85,10 +76,7 @@ paxos:proposer rdf:type owl:ObjectProperty ;
 
 ###  http://www.semanticweb.org/jan-pieter/ontologies/2023/2/paxos-ontology#round
 paxos:round rdf:type owl:ObjectProperty ;
-            rdfs:domain paxos:Accept ,
-                        paxos:Accepted ,
-                        paxos:Prepare ,
-                        paxos:Promise ;
+            rdfs:domain paxos:Message ;
             rdfs:range [ rdf:type owl:Restriction ;
                          owl:onProperty owl:topDataProperty ;
                          owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
@@ -104,10 +92,7 @@ paxos:round rdf:type owl:ObjectProperty ;
 
 ###  http://www.semanticweb.org/jan-pieter/ontologies/2023/2/paxos-ontology#startTime
 paxos:startTime rdf:type owl:ObjectProperty ;
-                rdfs:domain paxos:Accept ,
-                            paxos:Accepted ,
-                            paxos:Prepare ,
-                            paxos:Promise ;
+                rdfs:domain paxos:Message ;
                 rdfs:range [ rdf:type owl:Restriction ;
                              owl:onProperty owl:topDataProperty ;
                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
@@ -135,21 +120,29 @@ paxos:value rdf:type owl:ObjectProperty ;
 
 ###  http://www.semanticweb.org/jan-pieter/ontologies/2023/2/paxos-ontology#Accept
 paxos:Accept rdf:type owl:Class ;
+             rdfs:subClassOf paxos:Message ;
              rdfs:comment "Class used to model the Paxos Accept step"@en .
 
 
 ###  http://www.semanticweb.org/jan-pieter/ontologies/2023/2/paxos-ontology#Accepted
 paxos:Accepted rdf:type owl:Class ;
+               rdfs:subClassOf paxos:Message ;
                rdfs:comment "Class used to model the Paxos Accepted step"@en .
+
+
+###  http://www.semanticweb.org/jan-pieter/ontologies/2023/2/paxos-ontology#Message
+paxos:Message rdf:type owl:Class .
 
 
 ###  http://www.semanticweb.org/jan-pieter/ontologies/2023/2/paxos-ontology#Prepare
 paxos:Prepare rdf:type owl:Class ;
+              rdfs:subClassOf paxos:Message ;
               rdfs:comment "Class used to model the Paxos Prepare step"@en .
 
 
 ###  http://www.semanticweb.org/jan-pieter/ontologies/2023/2/paxos-ontology#Promise
 paxos:Promise rdf:type owl:Class ;
+              rdfs:subClassOf paxos:Message ;
               rdfs:comment "Class used to model the Paxos Promise step"@en .
 
 
