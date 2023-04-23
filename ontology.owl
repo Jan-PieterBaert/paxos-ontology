@@ -38,6 +38,7 @@ paxos:acceptors rdf:type owl:ObjectProperty ;
 paxos:from rdf:type owl:ObjectProperty ;
            rdfs:domain paxos:Accept ,
                        paxos:Accepted ,
+                       paxos:Ack,
                        paxos:Promise ;
            rdfs:range [ rdf:type owl:Restriction ;
                         owl:onProperty owl:topDataProperty ;
@@ -100,6 +101,17 @@ paxos:startTime rdf:type owl:ObjectProperty ;
                            ] ;
                 rdfs:comment ""@en ,
                              "The timestamp of the first message that was sent from the Proposer, can be used when an application want to assume a certain timeout means the Acceptors don't all agree and wants to move on to the next instance."@en .
+
+
+###  https://purl.org/paxos#ackKey
+paxos:ackKey rdf:type owl:ObjectProperty ;
+            rdfs:domain paxos:Ack;
+            rdfs:range [ rdf:type owl:Restriction ;
+                         owl:onProperty owl:topDataProperty ;
+                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                         owl:onDataRange xsd:string
+                       ] ;
+            rdfs:comment "The string value of the key with which the message is stored."@en .
 
 
 ###  https://purl.org/paxos#value
